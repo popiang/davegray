@@ -1,0 +1,95 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+	font-family: "Roboto", sans-serif;
+}
+
+main {
+    width: 500px;
+    background-color: #c6d9f3;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgb(0, 0, 0, 0.1);
+}
+
+main h1 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+main form {
+    display: flex;
+    gap: 10px;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+main form input {
+    min-width: 100%;
+	font-size: 16px;
+}
+
+main form input::placeholder {
+	font-size: 16px;
+	color: #888;
+}
+
+input[type="checkbox"] {
+    transform: scale(1.5);
+	padding: 15px;
+}
+
+.submit {
+    width: 48px;
+    height: 48px;
+    background-color: #04aa6d;
+    color: #fff;
+    border: none;
+	border-radius: 8px;
+}
+
+.new-todo input {
+    padding: 15px;
+    border-radius: 8px;
+    border: none;
+    width: 250px;
+}
+
+main form .submit {
+    font-size: 18px;
+}
+
+main article {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #fff;
+    padding: 15px;
+}
+
+main article:not(:last-child) {
+    border-bottom: none;
+}
+
+.todo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.trash {
+    width: 40px;
+    height: 40px;
+    color: #d11a2a;
+	font-size: 18px;
+    border: none;
+	border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
