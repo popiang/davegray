@@ -46,9 +46,9 @@
 26. create errorHandler.js in middleware
 	- create errorHandler middleware function and export it
 27. import it in server.js and use it right before calling app.listen
-28. npm install cookie-parser
-29. in server.js, require cookie-parser and use it at the top after express.json()
-30. in server.js, add app.use(express.json()) after logger
+28. in server.js, add app.use(express.json()) after logger
+29. npm install cookie-parser
+30. in server.js, require cookie-parser and use it at the top after express.json()
 31. npm install cors
 32. in server.js, require cors and use it after logger
 33. create config folder
