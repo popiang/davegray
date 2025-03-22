@@ -88,4 +88,5 @@
 60. in usersController, create the scaleton of getAllUsers, createNewUser, updateUser and delete user, then export them
 61. require usersController in userRoutes.js and put the respective method in get, post, patch and delete route
 62. back in usersController, complete the code for all 4 methods
-
+63. use postman and test everything
+64. now create controller for note and also test everything with postman 

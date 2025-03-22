@@ -8,7 +8,7 @@ const bcrypt = require("bcrypt");
 // @access Private
 const getAllUsers = asyncHandler(async (req, res) => {
     const users = await User.find().select("-password").lean();
-    if (!users) {
+    if (!users?.length) {
         return res.status(400).json({ message: "No users found" });
     }
 
@@ -56,7 +56,9 @@ const createNewUser = asyncHandler(async (req, res) => {
 // @route PATCH /users
 // @access Private
 const updateUser = asyncHandler(async (req, res) => {
+	console.log(req.body);
     const { id, username, roles, active, password } = req.body;
+	console.log(id, username, roles, active, password);
 
     // validate data
     if (
@@ -107,9 +109,9 @@ const deleteUser = asyncHandler(async (req, res) => {
         return res.status(400).json({ message: "User ID required" });
     }
 
-    const notes = await Note.findOne({ user: id }).lean().exec();
+    const note = await Note.findOne({ user: id }).lean().exec();
 
-    if (notes?.length) {
+    if (note) {
         return res.status(400).json({ message: "User has assigned notes" });
     }
 
@@ -120,6 +122,7 @@ const deleteUser = asyncHandler(async (req, res) => {
     }
 
     const result = await user.deleteOne();
+	console.log(result);
 
     const reply = `Username ${result.username} with ID ${result._id} deleted`;
 
