@@ -71,6 +71,7 @@ const updateUser = asyncHandler(async (req, res) => {
         return res.status(400).json({ message: "All fields are required" });
     }
 
+	// don't have to call lean because we need the associated methods(save)
     const user = await User.findById(id).exec();
 
     if (!user) {
@@ -80,11 +81,12 @@ const updateUser = asyncHandler(async (req, res) => {
     // check for duplicate
     const duplicate = await User.findOne({ username }).lean().exec();
 
-    // allow updates to the original user
+    // only allow updates to the original user
     if (duplicate && duplicate?._id.toString() !== id) {
         return res.status(409).json({ message: "Duplicate username" });
     }
 
+	// populated updated data
     user.username = username;
     user.roles = roles;
     user.active = active;
@@ -105,10 +107,12 @@ const updateUser = asyncHandler(async (req, res) => {
 const deleteUser = asyncHandler(async (req, res) => {
     const { id } = req.body;
 
+	// validate input
     if (!id) {
         return res.status(400).json({ message: "User ID required" });
     }
 
+	// user cannot be deleted if there are notes assigned
     const note = await Note.findOne({ user: id }).lean().exec();
 
     if (note) {
