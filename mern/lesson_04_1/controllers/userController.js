@@ -86,7 +86,7 @@ const updateUser = asyncHandler(async (req, res) => {
 
     const updatedUser = await user.save();
 
-    res.json({ message: `${updateUser.username} updated` });
+    res.json({ message: `${updatedUser.username} updated` });
 });
 
 // @desc Delete a user
@@ -113,7 +113,7 @@ const deleteUser = asyncHandler(async (req, res) => {
 
     const result = await user.deleteOne();
 
-    const reply = `Username ${result.username} with ID ${result.id} deleted`;
+    const reply = `Username ${user.username} with ID ${user.id} deleted`;
 
     res.json(reply);
 });
