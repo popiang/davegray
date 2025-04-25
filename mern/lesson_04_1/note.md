@@ -81,3 +81,12 @@
 54. at the bottom again, call mongoose.connection.on error, to catch any database error
 55. try everything
 
+56. in server.js, add app.use(/users) that require("./routes/userRoutes")
+57. in routes folder, create userRoutes.js create the scaleton of get, post, patch and delete, and then export it
+58. create controllers folder and create usersController.js, and require both User and Note model
+59. install express-async-handler and bcrypt, and require them in usersController.js
+60. in usersController, create the scaleton of getAllUsers, createNewUser, updateUser and delete user, then export them
+61. require usersController in userRoutes.js and put the respective method in get, post, patch and delete route
+62. back in usersController, complete the code for all 4 methods
+63. use postman and test everything
+64. now create controller for note and also test everything with postman 
