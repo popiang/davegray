@@ -10,7 +10,7 @@
    - require path
    - get PORT from .env file
 8. app.listen()
-9. app.use path.join
+9. server static files using app.use path.join
 10. create public/css/style.css
     - copy the basic css style
 11. in server.js, add app.use, require("./routes/root")
