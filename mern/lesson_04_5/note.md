@@ -39,7 +39,15 @@
 20. create logger.js in middleware
 21. get {format} from date-fns, v4:uuid, fs, fsPromises and path
 22. create logEvents async function that accept message and logFileName
+    - create dateTime
+	- create logItem
+	- use try catch
+	- check if logs folder is not exist yet, create it
+	- append the logItem to the log file
 23. create logger
+    - call logEvents and send the message and filename
+	- console.log some log as well
+	- call next
 24. export both logEvents and logger
 25. in server.js, require logger and use it at the top
     - now you can test it
