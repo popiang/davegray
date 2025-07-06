@@ -116,9 +116,10 @@
 74. in App.js import Public and then add a child route inside Layout route and set it and the index with element Public
 75. next in components, create Login.js, rfc just to have a basic h1
 76. in App.js import Login and add in route after public
-77. in components folder, create DashLayout.js, rfc, import outlet, return a frament with a div.dash-container with outlet inside it
+77. in components folder, create DashLayout.js, rfc, import outlet, return a fragment with a div.dash-container with outlet inside it
 78. in components folder, create DashHeader.js, rfc, import Link, and then create the content const and return it
 79. in DashLayout.js, import dashheader and put it before the dash-container div
+
 79. npm install:
 	- @fortawesome/fontawesome-svg-core 
 	- @fortawesome/free-solid-svg-icons
