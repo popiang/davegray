@@ -119,37 +119,36 @@
 77. in components folder, create DashLayout.js, rfc, import outlet, return a fragment with a div.dash-container with outlet inside it
 78. in components folder, create DashHeader.js, rfc, import Link, and then create the content const and return it
 79. in DashLayout.js, import dashheader and put it before the dash-container div
-
-79. npm install:
+80. npm install:
 	- @fortawesome/fontawesome-svg-core 
 	- @fortawesome/free-solid-svg-icons
 	- @fortawesome/react-fontawesome
-80. in components folder create DashFooter.js
+81. in components folder create DashFooter.js
     - rfc, import FontAwesomeIcon, faHouse, useNavigate & useLocation
 	- create navigate const
 	- get pathname from uselocation
 	- create a function called onGoHomeClicked that return navigate("/dash")
 	- create goHomeButton
 	- create content
-81. import DashFooter in DashLayout and put it after dash-container div
-82. import DashLayout in App.js, then create a route after login, path=dash and the element is dashlayout
+82. import DashFooter in DashLayout and put it after dash-container div
+83. import DashLayout in App.js, then create a route after login, path=dash and the element is dashlayout
     - it's a parent route that is goint to have children routes
-83. in src folder, create a features folder
-84. in features folder create an auth folder
-85. drag login.js into auth folder
-86. in auth folder, create Welcome.js
+84. in src folder, create a features folder
+85. in features folder create an auth folder
+86. drag login.js into auth folder
+87. in auth folder, create Welcome.js
     - rfc
 	- import Link
 	- create date
 	- create today, the formated date above
 	- create the content
-87. in App.js import welcome.js and put it in a child route of dashlayout, and set it as the index
-88. in features folder, create notes folder and users folder
-89. in notes folder, create NotesList.js
+88. in App.js import welcome.js and put it in a child route of dashlayout, and set it as the index
+89. in features folder, create notes folder and users folder
+90. in notes folder, create NotesList.js
     - rfc, h1 NotesList
-90. in users folder, create UsersList.js
+91. in users folder, create UsersList.js
     - rfc, h1 UsersList
-91. in App.js, import NotesList and UsersList
+92. in App.js, import NotesList and UsersList
     - add new route after Welcome, path=notes as parent and add child route, set as index, element noteslist
 	- add new route after notes, path=users as parent and add child route, set as index, element userslist
-92. spin up the server and test everything
+93. spin up the server and test everything
