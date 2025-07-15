@@ -35,13 +35,10 @@ const postsSlice = createSlice({
     initialState,
     reducers: {
         postAdded: {
-            reducer(state, action) {
-                state.push(action.payload);
-            },
             prepare(title, content, userId) {
                 return {
                     payload: {
-                        id: nanoid(),
+                        id: nanoid,
                         title,
                         content,
                         date: new Date().toISOString(),
@@ -56,6 +53,9 @@ const postsSlice = createSlice({
                     },
                 };
             },
+            reducer(state, action) {
+                state.push(action.payload);
+            },
         },
         reactionAdded(state, action) {
             const { postId, reaction } = action.payload;
@@ -67,8 +67,8 @@ const postsSlice = createSlice({
     },
 });
 
-export const selectAllPost = (state) => state.posts;
+export const selectAllPosts = (state) => state.posts;
 
 export const { postAdded, reactionAdded } = postsSlice.actions;
 
-export default postsSlice.reducer;
+export default postsSlice.reduccer;
