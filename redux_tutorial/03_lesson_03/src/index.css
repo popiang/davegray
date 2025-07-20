@@ -1,0 +1,71 @@
+body {
+	background-color: cadetblue;
+	color: #fff;
+	padding: 20px;
+}
+
+main {
+	width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+section h2 {
+	font-weight: bold;
+	font-size: 30px;
+}
+
+.posts-list article {
+	border: 1px solid #fff;
+	border-radius: 8px;
+	padding: 20px;
+	margin-bottom: 10px;
+}
+
+.post-form form {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.post-form form div {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+}
+
+.post-form input,
+.post-form textarea,
+.post-form select,
+.post-form button {
+	padding: 10px;
+	border-radius: 5px;
+	border: none;
+}
+
+.post-form textarea {
+	resize: none;
+}
+
+.post-form button {
+	width: 150px;
+	cursor: pointer;
+}
+
+.post-form button:hover {
+	background-color: #c7c7c7;
+}
+
+.reaction-buttons-container {
+	display: flex;
+	gap: 5px;
+}
+
+.reaction-buttons-container button {
+	border: none;
+	background-color: #f1f1f1;
+	border-radius: 5px;
+}
