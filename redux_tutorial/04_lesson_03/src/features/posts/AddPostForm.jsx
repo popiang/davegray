@@ -10,7 +10,6 @@ const AddPostForm = () => {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [userId, setUserId] = useState("");
-    const [addRequestStatus, setAddRequestStatus] = useState("idle");
 
     useEffect(() => {
         dispatch(fetchUsers());

@@ -11,7 +11,7 @@ const EditPostForm = () => {
 
 	const post = useSelector(state => selectPostById(state, Number(postId)));
     const users = useSelector(selectAllUsers);
-	const editStatis = useSelector(getEditStatus);
+	const editStatus = useSelector(getEditStatus);
 
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
@@ -88,4 +88,4 @@ const EditPostForm = () => {
     );
 };
 
-export default AddPostForm;
+export default EditPostForm;

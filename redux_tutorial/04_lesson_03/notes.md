@@ -37,7 +37,12 @@ steps lesson 03
 
 step lesson 04
 
-1. in postsSlice.js, create the selectPostById function and export it
+1. in postsSlice.js
+   - update initialState
+   - update existing extraReducers
+   - create the selectPostById function and export it
+   - create updatePost and deletePost async thunk function
+   - create addCase in postsSlice.js for updatePost and deletePost
 2. create SinglePostPage.jsx
    - install react-router-dom
    - use useparams to get postId from url
@@ -60,6 +65,4 @@ step lesson 04
 11. create EditPostForm.jsx
 	- almost similar to AddPost.jsx
     - a long one, refer previous code
-12. in postSlices, create updatePost function and add addCase for updatePost
-13. style the whole things first
-14. create deletePost function in postsSlice   
+13. copy ccs
