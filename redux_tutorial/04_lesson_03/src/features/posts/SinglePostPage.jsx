@@ -22,7 +22,7 @@ const SinglePostPage = () => {
             <h2>{post.title}</h2>
             <p>{post.body}</p>
             <p>
-                <Link to={`/post/edit/${post.id}`}>Edit Job</Link>
+                <Link to={`/post/edit/${post.id}`}>Edit Job</Link> &nbsp;
                 <PostAuthor userId={post.userId} />
                 <TimeAgo timestamp={post.date} />
             </p>

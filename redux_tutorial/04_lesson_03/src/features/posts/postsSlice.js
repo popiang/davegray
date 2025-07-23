@@ -176,7 +176,7 @@ export const postsSlice = createSlice({
 export const selectAllPosts = (state) => state.posts.posts;
 export const selectPostById = (state, id) =>
     state.posts.posts.find((post) => post.id === id);
-export const getFetchStatus = (state) => state.posts.fetchStatus;
+export const getPostsStatus = (state) => state.posts.fetchStatus;
 export const getAddStatus = (state) => state.posts.addStatus;
 export const getEditStatus = (state) => state.posts.editStatus;
 export const getPostsError = (state) => state.posts.error;

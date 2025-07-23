@@ -7,6 +7,7 @@ import {
     getPostsStatus,
     selectAllPosts,
 } from "./postsSlice";
+import { fetchUsers } from "../users/usersSlice";
 
 const PostsList = () => {
     const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const PostsList = () => {
     useEffect(() => {
         if (postsStatus === "idle") {
             dispatch(fetchPosts());
+			dispatch(fetchUsers());
         }
     }, [dispatch, postsStatus]);
 
@@ -27,7 +29,7 @@ const PostsList = () => {
     } else if (postsStatus === "succeeded") {
         const orderedPosts = posts
             .slice()
-            .sort((a, b) => b.date.localeCompare(a.date));		
+            .sort((a, b) => b.date.localeCompare(a.date));		          
         content = orderedPosts.map((post) => (
             <PostsExcerpt key={post.id} post={post} />
         ));
