@@ -65,4 +65,5 @@ step lesson 04
 11. create EditPostForm.jsx
 	- almost similar to AddPost.jsx
     - a long one, refer previous code
+12. update AddPostForm.jsx
 13. copy ccs
