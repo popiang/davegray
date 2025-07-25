@@ -7,6 +7,7 @@ import {
     getPostsStatus,
     selectAllPosts,
 } from "./postsSlice";
+import { fetchUsers } from "../users/usersSlice";
 
 const PostsList = () => {
     const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const PostsList = () => {
     useEffect(() => {
         if (postsStatus === "idle") {
             dispatch(fetchPosts());
+			dispatch(fetchUsers());
         }
     }, [dispatch, postsStatus]);
 
