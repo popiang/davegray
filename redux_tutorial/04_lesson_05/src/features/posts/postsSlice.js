@@ -20,8 +20,12 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
 export const addNewPost = createAsyncThunk(
     "posts/addNewPost",
     async (initialPost) => {
-        const response = await axios.post(POSTS_URL, initialPost);
-        return response.data;
+        try {
+            const response = await axios.post(POSTS_URL, initialPost);
+            return response.data;
+        } catch (error) {
+            return error.message;
+        }
     }
 );
 
@@ -43,10 +47,8 @@ export const deletePost = createAsyncThunk(
     async (deletedPost) => {
         const { id } = deletedPost;
         try {
-            const response = await axios.delete(`${POSTS_URL}/${id}`);
-            if (response?.status === 200) {
-                return deletedPost;
-            }
+            const response = await axios.delete(POSTS_URL, id);
+            if (response?.status === 200) return deletedPost;
         } catch (error) {
             return error.message;
         }
@@ -120,7 +122,6 @@ export const postsSlice = createSlice({
                 state.addStatus = "loading";
             })
             .addCase(addNewPost.fulfilled, (state, action) => {
-                state.addStatus = "succeeded";
                 action.payload.userId = Number(action.payload.userId);
                 action.payload.date = new Date().toISOString();
                 action.payload.reactions = {
@@ -131,41 +132,43 @@ export const postsSlice = createSlice({
                     coffee: 0,
                 };
                 state.posts.push(action.payload);
-            })
-            .addCase(addNewPost.rejected, (state, action) => {
-                state.addStatus = "failed";
-                state.error = action.error.message;
+                state.addStatus = "succeeded";
             })
             .addCase(updatePost.pending, (state) => {
-                state.editStatus = "pending";
+                state.editStatus = "loading";
             })
             .addCase(updatePost.fulfilled, (state, action) => {
                 state.editStatus = "idle";
 
                 if (!action.payload?.id) {
-                    console.log("Update could not be completed");
+                    console.log("Invalid payload. Update can't be completed");
                     console.log(action.payload);
                     return;
                 }
 
                 const { id } = action.payload;
-                action.payload.date = new Date().toISOString();
                 const posts = state.posts.filter((post) => post.id !== id);
-                state.post = [...posts, action.payload];
+                action.payload.data = new Date().toISOString();
+                state.posts = [...posts, action.payload];
             })
             .addCase(updatePost.rejected, (state, action) => {
                 state.editStatus = "failed";
-                state.error = action.error.message;
+                state.error = action.error;
+                console.log("An error occured. Update can't be completed.");
+                console.log(action.error);
             })
             .addCase(deletePost.fulfilled, (state, action) => {
+                // delete failed
                 if (!action.payload?.id) {
-                    console.log("Delete could not complete");
+                    console.log("Post failed to be deleted.");
                     console.log(action.payload);
                     return;
                 }
 
+                // delete success
                 const { id } = action.payload;
 
+                // remove deleted post from the redux state
                 const posts = state.posts.filter((post) => post.id !== id);
                 state.posts = posts;
             });
@@ -175,7 +178,7 @@ export const postsSlice = createSlice({
 export const selectAllPosts = (state) => state.posts.posts;
 export const selectPostById = (state, id) =>
     state.posts.posts.find((post) => post.id === id);
-export const getPostsStatus = (state) => state.posts.fetchStatus;
+export const getFetchStatus = (state) => state.posts.fetchStatus;
 export const getAddStatus = (state) => state.posts.addStatus;
 export const getEditStatus = (state) => state.posts.editStatus;
 export const getPostsError = (state) => state.posts.error;

@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { selectAllUsers } from "../users/usersSlice";
 import { useNavigate, useParams } from "react-router-dom";
-import { fetchUsers, selectAllUsers } from "../users/usersSlice";
 import {
     deletePost,
     getEditStatus,
@@ -14,23 +14,16 @@ const EditPostForm = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-    const post = useSelector((state) => selectPostById(state, Number(postId)));
     const users = useSelector(selectAllUsers);
+    const post = useSelector((state) => selectPostById(state, Number(postId)));
     const editStatus = useSelector(getEditStatus);
 
-    const [title, setTitle] = useState([post?.title]);
+    const [title, setTitle] = useState(post?.title);
     const [content, setContent] = useState(post?.body);
     const [userId, setUserId] = useState(post?.userId);
 
-    useEffect(() => {
-        if (editStatus === "idle") {
-            dispatch(fetchUsers);
-        }
-    }, [dispatch, editStatus]);
-
-    const userOptions = users.map((user) => (
-        <option key={user.id} value={user.id}>
+    const usersOptions = users.map((user) => (
+        <option value={user.id} key={user.id}>
             {user.name}
         </option>
     ));
@@ -41,9 +34,9 @@ const EditPostForm = () => {
     const onSavePostClicked = async () => {
         if (canSave) {
             try {
-                const response = await dispatch(
+                await dispatch(
                     updatePost({
-                        id: post.id,
+                        id: postId,
                         title,
                         body: content,
                         userId,
@@ -51,12 +44,10 @@ const EditPostForm = () => {
                     })
                 ).unwrap();
 
-				console.log(response);
-
-                // navigate("/");
-                navigate(`/post/${post.id}`);
+                navigate(`/post/${postId}`);
             } catch (error) {
-                console.log(error.message);
+                console.log("Failed to save post");
+                console.log(error);
             } finally {
                 setTitle("");
                 setContent("");
@@ -67,10 +58,11 @@ const EditPostForm = () => {
 
     const onDeletePostClicked = async () => {
         try {
-            await dispatch(deletePost({ id: postId })).unwrap();
+            await dispatch(deletePost(post)).unwrap();
             navigate("/");
         } catch (error) {
-            console.log(error.message);
+            console.log("Failed to delete post");
+            console.log(error);
         } finally {
             setTitle("");
             setContent("");
@@ -80,13 +72,12 @@ const EditPostForm = () => {
 
     return (
         <section className="post-form">
-            <h2>Edit Form</h2>
+            <h2>Edit Post</h2>
             <form>
                 <div>
                     <label htmlFor="postTitle">Post Title:</label>
                     <input
                         type="text"
-                        name="postTitle"
                         id="postTitle"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
@@ -94,7 +85,7 @@ const EditPostForm = () => {
                 </div>
 
                 <div>
-                    <label htmlFor="postAuthor">Author:</label>
+                    <label htmlFor="author">Author:</label>
                     <select
                         name="postAuthor"
                         id="postAuthor"
@@ -102,7 +93,7 @@ const EditPostForm = () => {
                         onChange={(e) => setUserId(e.target.value)}
                     >
                         <option value=""></option>
-                        {userOptions}
+                        {usersOptions}
                     </select>
                 </div>
 
@@ -111,28 +102,26 @@ const EditPostForm = () => {
                     <textarea
                         name="postContent"
                         id="postContent"
+                        rows={5}
                         value={content}
                         onChange={(e) => setContent(e.target.value)}
-						rows={5}
                     />
                 </div>
 
-                <div className="actions">
-                    <button
-                        type="button"
-                        onClick={onSavePostClicked}
-                        disabled={!canSave}
-                    >
-                        Save Post
-                    </button>
-                    <button
-                        className="delete-post-button"
-                        type="button"
-                        onClick={onDeletePostClicked}
-                    >
-                        Delete Post
-                    </button>
-                </div>
+                <button
+                    type="button"
+                    onClick={onSavePostClicked}
+                    disabled={!canSave}
+                >
+                    Edit Post
+                </button>
+                <button
+                    type="button"
+                    onClick={onDeletePostClicked}
+                    disabled={!canSave}
+                >
+                    Delete Post
+                </button>
             </form>
         </section>
     );

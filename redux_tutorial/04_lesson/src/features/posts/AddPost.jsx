@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewPost, getAddStatus } from "./postsSlice";
-import { selectAllUsers } from "../users/usersSlice";
+import { selectAllUserssss } from "../users/usersSlice";
 import { useNavigate } from "react-router-dom";
 
 const AddPost = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const addStatus = useSelector(getAddStatus);
-    const users = useSelector(selectAllUsers);
+    const users = useSelector(selectAllUserssss);
 
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");

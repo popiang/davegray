@@ -85,7 +85,7 @@ export const postsSlice = createSlice({
             if (existingPost) {
                 existingPost.reactions[reaction]++;
             }
-        }
+        },
     },
     extraReducers(builder) {
         builder

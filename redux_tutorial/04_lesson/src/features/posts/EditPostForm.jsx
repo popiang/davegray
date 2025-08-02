@@ -6,7 +6,7 @@ import {
     selectPostById,
     updatePost,
 } from "./postsSlice";
-import { selectAllUsers } from "../users/usersSlice";
+import { selectAllUserssss } from "../users/usersSlice";
 import { useState } from "react";
 
 const EditPostForm = () => {
@@ -14,7 +14,7 @@ const EditPostForm = () => {
     const navigate = useNavigate();
 
     const post = useSelector((state) => selectPostById(state, Number(postId)));
-    const users = useSelector(selectAllUsers);
+    const users = useSelector(selectAllUserssss);
     const editStatus = useSelector(getEditStatus);
 
     const [title, setTitle] = useState(post?.title);
